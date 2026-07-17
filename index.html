@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="STARHOUND - Academia Intergaláctica de Cazarrecompensas"
+    >
+
+    <meta
+        name="theme-color"
+        content="#070b09"
+    >
+
+    <title>
+        STARHOUND // Academia de Cazarrecompensas
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="minijuegos.css"
+    >
+
+    <link rel="stylesheet" href="mundo.css">
+    <link rel="stylesheet" href="overhaul-ui.css">
+    <link rel="stylesheet" href="v09-cerebro.css">
+    <link rel="stylesheet" href="v10-tutorial.css">
+
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         APLICACIÓN STARHOUND
+         ===================================================== -->
+
+    <main
+        id="starhound-app"
+        aria-live="polite"
+    >
+
+        <!-- =================================================
+             PANTALLA DE ARRANQUE
+             JavaScript reemplazará este contenido.
+             ================================================= -->
+
+        <section class="pantalla-starhound">
+
+            <div class="bloque-restriccion">
+
+                <span class="etiqueta-terminal">
+                    STARHOUND_BOOT_SEQUENCE
+                </span>
+
+                <h2>
+                    INICIANDO TERMINAL DE CAZADOR
+                </h2>
+
+                <p>
+                    Sincronizando archivo galáctico,
+                    protocolos de rastreo y registros
+                    de recompensas.
+                </p>
+
+                <div class="linea-sistema">
+                    ESPERANDO RESPUESTA DEL NÚCLEO...
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         CONTENEDOR GLOBAL DE MINIJUEGOS
+
+         minijuegos.js puede utilizar este nodo para montar
+         desafíos sin destruir la interfaz principal.
+         ===================================================== -->
+
+    <div
+        id="contenedor-minijuegos"
+        aria-live="assertive"
+    ></div>
+
+
+    <!-- =====================================================
+         MENSAJES DEL SISTEMA
+         ===================================================== -->
+
+    <div
+        id="mensaje-starhound"
+        class="mensaje-starhound"
+        role="status"
+        aria-live="polite"
+    ></div>
+
+
+    <!-- =====================================================
+         ORDEN DE CARGA
+
+         1. data.js
+            Base de datos del universo.
+
+         2. minijuegos.js
+            Motor de desafíos.
+
+         3. game.js
+            Motor principal.
+
+         NO CAMBIAR ESTE ORDEN.
+         ===================================================== -->
+
+    <script src="data.js"></script>
+
+    <script src="contenido-expansion.js"></script>
+
+    <script src="minijuegos.js"></script>
+
+    <script src="deduccion.js"></script>
+
+    <script src="evidencias.js"></script>
+
+    <script src="game.js"></script>
+
+    <script src="sistemas-expansion.js"></script>
+
+    <script src="mundo.js"></script>
+    <script src="overhaul-ui.js"></script>
+    <script src="v09-cerebro.js"></script>
+    <script src="v10-tutorial.js"></script>
+
+
+    <!-- =====================================================
+         COMPROBACIÓN DE ARRANQUE
+         ===================================================== -->
+
+    <script>
+
+        window.addEventListener("load", () => {
+
+            console.log(
+                "%cSTARHOUND",
+                [
+                    "color: #9bd49f",
+                    "font-size: 22px",
+                    "font-weight: bold",
+                    "letter-spacing: 4px"
+                ].join(";")
+            );
+
+            console.log(
+                "%cACADEMIA INTERGALÁCTICA DE CAZARRECOMPENSAS",
+                [
+                    "color: #6d9272",
+                    "font-size: 11px",
+                    "letter-spacing: 2px"
+                ].join(";")
+            );
+
+            console.log(
+                "[STARHOUND] Terminal iniciada."
+            );
+
+            console.log(
+                "[STARHOUND] data.js:",
+                typeof AGENTES !== "undefined"
+                    ? "CARGADO"
+                    : "NO DETECTADO"
+            );
+
+            console.log(
+                "[STARHOUND] minijuegos.js:",
+                typeof iniciarPruebaInvestigacion !== "undefined"
+                    ? "CARGADO"
+                    : "VERIFICAR MOTOR"
+            );
+
+        });
+
+    </script>
+
+</body>
+
+</html>

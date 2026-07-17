@@ -1,0 +1,234 @@
+/* =========================================================
+   STARHOUND — FASE VISUAL DE MINIJUEGOS
+   ========================================================= */
+
+.terminal-prueba {
+    width: min(980px, 100%);
+    max-height: calc(100vh - 40px);
+    min-width: 0;
+    overflow: auto;
+    border: 1px solid var(--borde-claro);
+    background: linear-gradient(145deg, rgba(16, 26, 19, .99), rgba(3, 7, 5, .99));
+    box-shadow: 0 35px 110px rgba(0, 0, 0, .82);
+}
+
+.terminal-prueba__cabecera,
+.terminal-prueba__pie {
+    min-width: 0;
+    padding: clamp(16px, 3vw, 25px);
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--borde);
+    background: rgba(1, 5, 3, .5);
+}
+
+.terminal-prueba__cabecera h2 {
+    margin: 5px 0 0;
+    color: var(--verde-claro);
+    font-size: clamp(1.25rem, 3vw, 2.2rem);
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+}
+
+.terminal-prueba__codigo,
+.terminal-prueba__estado,
+.terminal-prueba__pie,
+.escena-prueba span,
+.escena-prueba small {
+    color: var(--texto-apagado);
+    font-size: .66rem;
+    letter-spacing: .12em;
+}
+
+.terminal-prueba__estado { flex: 0 0 auto; color: var(--verde); white-space: nowrap; }
+.punto-terminal { width: 7px; height: 7px; display: inline-block; margin-right: 7px; border-radius: 50%; background: var(--verde); box-shadow: 0 0 10px var(--verde); }
+.terminal-prueba__marco { min-width: 0; padding: clamp(18px, 4vw, 38px); }
+.terminal-prueba__pie { border-top: 1px solid var(--borde); border-bottom: 0; }
+
+.minijuego-descripcion {
+    margin-bottom: 18px;
+    padding: 13px 15px;
+    border-left: 2px solid var(--verde-oscuro);
+    background: rgba(82, 124, 89, .08);
+    color: var(--texto);
+    overflow-wrap: anywhere;
+}
+
+.minijuego-contenido { min-width: 0; display: grid; gap: 18px; }
+
+.escena-prueba {
+    min-width: 0;
+    min-height: 84px;
+    padding: 15px;
+    display: grid;
+    gap: 8px;
+    border: 1px solid var(--borde);
+    background: rgba(1, 6, 4, .58);
+    overflow: hidden;
+    position: relative;
+}
+
+.escena-prueba::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: .35;
+    background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(155, 212, 159, .045) 4px);
+}
+
+.escena-prueba > * { position: relative; z-index: 1; }
+.escena-prueba strong { color: var(--verde-claro); font-size: .9rem; letter-spacing: .08em; }
+
+.pregunta-prueba,
+.dialogo-informante {
+    min-width: 0;
+    padding: clamp(17px, 3vw, 26px);
+    border: 1px solid var(--borde);
+    background: linear-gradient(90deg, rgba(82, 124, 89, .12), transparent);
+    color: var(--verde-claro);
+    font-size: clamp(1rem, 2.4vw, 1.25rem);
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+}
+
+.grid-respuestas { min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+
+.boton-prueba {
+    min-width: 0;
+    min-height: 58px;
+    padding: 12px 15px;
+    border: 1px solid var(--borde-claro);
+    background: linear-gradient(135deg, rgba(16,25,20,.98), rgba(4,9,6,.98));
+    color: var(--verde);
+    cursor: pointer;
+    font-size: .72rem;
+    letter-spacing: .08em;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+    transition: transform var(--transicion), border-color var(--transicion), background var(--transicion), box-shadow var(--transicion);
+}
+
+.boton-prueba:hover:not(:disabled),
+.boton-prueba:focus-visible {
+    border-color: var(--verde);
+    background: rgba(82,124,89,.18);
+    box-shadow: inset 3px 0 var(--verde), 0 0 18px rgba(155,212,159,.09);
+    transform: translateY(-1px);
+}
+
+.boton-prueba:disabled { opacity: .5; cursor: default; transform: none; }
+
+
+/* Contextos: navegación, archivo, comunicaciones y consola */
+.radar-navegacion {
+    width: 72px;
+    aspect-ratio: 1;
+    grid-row: span 2;
+    justify-self: end;
+    border: 1px solid var(--verde-oscuro);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(155,212,159,.14) 1px, transparent 2px), repeating-radial-gradient(circle, transparent 0 12px, rgba(82,124,89,.35) 13px 14px);
+    position: relative;
+}
+
+.radar-navegacion i,
+.radar-navegacion b { position: absolute; display: block; }
+.radar-navegacion i { width: 50%; height: 1px; top: 50%; left: 50%; background: var(--verde); transform-origin: left; animation: barrido-radar 2.8s linear infinite; }
+.radar-navegacion b { width: 5px; height: 5px; top: 28%; left: 58%; border-radius: 50%; background: var(--ambar); box-shadow: 0 0 9px var(--ambar); }
+
+.luces-consola { display: flex; gap: 7px; }
+.luces-consola i { width: 24px; height: 5px; border: 1px solid var(--verde-oscuro); background: rgba(82,124,89,.15); }
+.luces-consola i:nth-child(2) { background: var(--verde); box-shadow: 0 0 8px var(--verde); }
+
+.rutas-circuito { display: flex; align-items: center; gap: 0; }
+.rutas-circuito i { width: 32px; height: 8px; border: 1px solid var(--verde-oscuro); background: var(--panel); }
+.rutas-circuito i::after { content:""; display:block; width:5px; height:5px; margin:0 auto; border-radius:50%; background:var(--verde); box-shadow:0 0 7px var(--verde); }
+
+.escena-comunicacion { grid-template-columns: auto 1fr auto; align-items: center; }
+.avatar-informante { width: 48px; height: 48px; border: 1px solid var(--verde-oscuro); border-radius: 50%; position:relative; background:radial-gradient(circle at 50% 35%, var(--verde-apagado) 0 8px, transparent 9px), linear-gradient(135deg, transparent 45%, rgba(155,212,159,.25) 46% 54%, transparent 55%); }
+.avatar-informante i { position:absolute; width:22px; height:10px; left:12px; bottom:7px; border-radius:12px 12px 2px 2px; background:var(--verde-oscuro); }
+.escena-comunicacion b { color:var(--ambar); font-size:.65rem; white-space:nowrap; }
+
+.escena-osciloscopio { background: linear-gradient(90deg, rgba(20,50,31,.22), rgba(2,7,4,.8)); }
+.escena-transpondedor .barra-captura { height:5px; overflow:hidden; background:var(--panel); border:1px solid var(--borde); }
+.escena-transpondedor .barra-captura i { display:block; width:52%; height:100%; background:var(--verde); animation:carga-senal 3s linear forwards; }
+
+
+/* Cartas: mesa física de frontera */
+.mesa-cartas { min-width:0; display:grid; grid-template-columns:minmax(0,1fr) 170px; gap:14px; padding:clamp(14px,3vw,25px); border:1px solid #4e5d3d; background:radial-gradient(ellipse at center, rgba(73,88,47,.32), rgba(10,16,10,.96) 70%); box-shadow:inset 0 0 50px rgba(0,0,0,.65); }
+.objetivo-cartas { grid-column:2; grid-row:1 / span 3; min-width:0; padding:17px; display:flex; flex-direction:column; justify-content:center; gap:7px; border:1px solid var(--ambar); background:rgba(65,48,22,.28); }
+.objetivo-cartas span,.objetivo-cartas small,.estado-dealer { color:var(--texto-apagado); font-size:.62rem; letter-spacing:.1em; }
+.objetivo-cartas strong { color:var(--ambar); font-size:1.15rem; }
+.zona-cartas { min-width:0; display:grid; gap:8px; }
+.zona-jugador { gap:12px; }
+.mano-cartas { min-width:0; min-height:96px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.carta-espacial { width:64px; height:88px; flex:0 0 auto; padding:6px; display:flex; align-items:center; justify-content:center; border:1px solid #9a9a83; border-radius:3px; background:#d8d5c0; color:#111; box-shadow:3px 4px 0 rgba(0,0,0,.28); animation:repartir-carta .28s ease both; position:relative; }
+.carta-espacial > strong { font-size:2rem; }
+.carta-esquina { position:absolute; top:5px; left:6px; display:grid; line-height:.8; font-weight:bold; font-size:.78rem; }
+.carta-esquina b { font-size:.8rem; }
+.carta-esquina-inferior { top:auto; left:auto; right:6px; bottom:5px; transform:rotate(180deg); }
+.carta-roja { color:#a73d37; }.carta-negra { color:#151a17; }
+.carta-reverso { border-color:var(--verde-oscuro); background:repeating-linear-gradient(45deg, #1b3524 0 4px, #0b160e 4px 8px); color:var(--verde); }
+.carta-reverso i { position:absolute; inset:9px; border:1px solid rgba(155,212,159,.4); }.carta-reverso i:nth-child(2){inset:16px}.carta-reverso i:nth-child(3){inset:24px}
+.separador-mesa { min-width:0; padding:7px; border-top:1px solid rgba(200,170,114,.5); border-bottom:1px solid rgba(200,170,114,.5); color:var(--ambar); text-align:center; font-size:.65rem; letter-spacing:.25em; }
+.estado-cartas { color:var(--verde-claro); font-size:.75rem; letter-spacing:.1em; }
+
+
+/* Dispositivo de memoria */
+.carcasa-transpondedor { min-width:0; padding:15px; border:8px solid #253329; outline:1px solid var(--verde-oscuro); background:#071008; box-shadow:inset 0 0 35px rgba(0,0,0,.8); position:relative; overflow:hidden; }
+.carcasa-transpondedor > span { color:var(--verde); font-size:.66rem; letter-spacing:.12em; }
+.scanlines-transpondedor { position:absolute; inset:0; pointer-events:none; background:repeating-linear-gradient(0deg, transparent 0 3px, rgba(155,212,159,.07) 4px); }
+.visor-memoria { min-width:0; margin-top:12px; padding:clamp(18px,5vw,36px) 10px; border:1px solid var(--verde-oscuro); background:radial-gradient(ellipse, rgba(72,124,79,.2), #020704 72%); color:var(--verde-claro); text-align:center; font-size:clamp(1.1rem,5vw,2.6rem); letter-spacing:clamp(.05em,1.5vw,.25em); overflow-wrap:anywhere; text-shadow:0 0 10px rgba(193,239,196,.55); }
+.senal-perdida .visor-memoria { color:var(--rojo); text-shadow:none; }.senal-perdida > span { color:var(--rojo); }
+
+
+/* Consola de secuencia y red física */
+.panel-secuencia { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; padding:clamp(15px,3vw,26px); border:1px solid #536056; background:linear-gradient(145deg,#202822,#0a100c); }
+.boton-secuencia { min-width:0; min-height:74px; border:1px solid #637368; background:linear-gradient(145deg,#2b342d,#111813); color:var(--verde-claro); cursor:pointer; font-size:1.15rem; font-weight:bold; box-shadow:0 4px 0 #050805; transition:all .12s ease; }
+.boton-secuencia.activo { color:#071007; background:var(--verde); box-shadow:0 0 20px rgba(155,212,159,.75), inset 0 0 10px #e0ffe2; transform:translateY(2px); }
+
+.grid-hack { min-width:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(58px,1fr)); gap:12px; padding:clamp(16px,3vw,28px); border:1px solid var(--borde); background:linear-gradient(135deg,rgba(18,42,27,.42),rgba(2,7,4,.9)); position:relative; }
+.grid-hack::before { content:""; position:absolute; inset:14px; pointer-events:none; opacity:.4; background:linear-gradient(28deg,transparent 47%,var(--verde-oscuro) 48% 49%,transparent 50%),linear-gradient(-21deg,transparent 47%,var(--verde-oscuro) 48% 49%,transparent 50%); }
+.nodo-hack { min-width:0; min-height:54px; z-index:1; border:1px solid var(--verde-oscuro); border-radius:50%; background:#071108; color:var(--texto-apagado); cursor:pointer; font-size:.63rem; box-shadow:0 0 0 4px rgba(82,124,89,.09); transition:all .16s ease; }
+.nodo-hack:hover:not(:disabled) { border-color:var(--verde); color:var(--verde); box-shadow:0 0 14px rgba(155,212,159,.42); }.nodo-hack.nodo-correcto { background:var(--verde); color:#071007; box-shadow:0 0 20px var(--verde); }.nodo-hack.nodo-error { border-color:var(--rojo); color:var(--rojo); animation:error-nodo .28s linear 2; }
+
+
+/* Pulso / osciloscopio */
+.pista-pulso { height:100px; min-width:0; border:1px solid var(--verde-oscuro); background:repeating-linear-gradient(90deg, transparent 0 9.5%, rgba(82,124,89,.35) 10%),repeating-linear-gradient(0deg, #051008 0 19px, rgba(82,124,89,.25) 20px); position:relative; overflow:hidden; }
+.pista-pulso::before { content:""; position:absolute; left:0; right:0; top:52%; height:2px; background:var(--verde-oscuro); box-shadow:0 -18px 0 rgba(82,124,89,.15),0 18px 0 rgba(82,124,89,.15); }
+.zona-pulso { top:0; bottom:0; border-left:2px solid var(--ambar); border-right:2px solid var(--ambar); background:rgba(200,170,114,.2); position:absolute; }.zona-pulso::after { content:"LOCK WINDOW"; position:absolute; top:5px; left:5px; color:var(--ambar); font-size:.55rem; white-space:nowrap; }
+.cursor-pulso { top:5%; bottom:5%; width:3px; position:absolute; background:var(--verde-claro); box-shadow:0 0 12px var(--verde); transition:left .02s linear; }.cursor-pulso::before { content:"◆"; position:absolute; top:38%; left:50%; transform:translate(-50%,-50%); color:var(--verde-claro); }
+
+
+/* Tablero táctico e interrogatorio */
+.tablero-tactico { width:min(100%,520px); margin:0 auto; display:grid; grid-template-columns:repeat(8,minmax(0,1fr)); border:2px solid var(--verde-oscuro); box-shadow:0 0 28px rgba(82,124,89,.22); }
+.casilla-tactica { aspect-ratio:1; min-width:0; display:grid; place-items:center; font-size:clamp(.75rem,3.6vw,1.8rem); }.casilla-clara { background:#9cac90; color:#172118; }.casilla-oscura { background:#3f5945; color:#e2edda; }.casilla-origen { box-shadow:inset 0 0 0 3px var(--verde); }.casilla-destino { background:linear-gradient(135deg,#56775b,#82977b); }.casilla-objetivo { box-shadow:inset 0 0 0 3px var(--rojo),0 0 13px rgba(200,118,118,.5); }
+.modal-minijuego[data-minijuego="interrogatorio"] .grid-respuestas { grid-template-columns:1fr; }.modal-minijuego[data-minijuego="interrogatorio"] .boton-prueba { text-align:left; border-left:4px solid var(--verde-oscuro); }.modal-minijuego[data-minijuego="interrogatorio"] .boton-prueba::before { content:"RESPONDER // "; color:var(--ambar); }
+
+
+/* Resultado común */
+.resultado-prueba { min-width:0; padding:clamp(18px,4vw,30px); display:grid; grid-template-columns:auto minmax(0,1fr); gap:14px; align-items:center; border:1px solid var(--borde-claro); background:rgba(3,9,5,.96); animation:entrada-resultado .25s ease both; }
+.resultado-simbolo { width:52px; aspect-ratio:1; display:grid; place-items:center; border:1px solid currentColor; border-radius:50%; font-size:1.8rem; }.resultado-exito { color:var(--verde); border-color:var(--verde-oscuro); }.resultado-fallo { color:var(--rojo); border-color:rgba(200,118,118,.72); }.resultado-prueba span { font-size:.66rem; letter-spacing:.14em; }.resultado-prueba h3 { margin:3px 0; color:var(--verde-claro); font-size:clamp(.9rem,2.3vw,1.25rem); }.resultado-prueba p { margin:0; color:var(--texto); font-size:.8rem; overflow-wrap:anywhere; }.boton-continuar { grid-column:1 / -1; border-color:currentColor; color:inherit; }
+
+@keyframes barrido-radar { to { transform:rotate(360deg); } }
+@keyframes carga-senal { from{width:0} to{width:100%} }
+@keyframes repartir-carta { from { opacity:0; transform:translateY(-15px) rotate(-3deg); } to { opacity:1; transform:none; } }
+@keyframes error-nodo { 50% { transform:translateX(4px); background:rgba(200,118,118,.28); } }
+@keyframes entrada-resultado { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+
+@media (max-width: 640px) {
+    .modal-minijuego { padding:8px; }
+    .terminal-prueba { max-height:calc(100vh - 16px); }
+    .terminal-prueba__cabecera, .terminal-prueba__pie { align-items:flex-start; flex-direction:column; gap:8px; }
+    .terminal-prueba__marco { padding:16px; }
+    .grid-respuestas { grid-template-columns:1fr; }
+    .mesa-cartas { grid-template-columns:1fr; }
+    .objetivo-cartas { grid-column:auto; grid-row:auto; flex-direction:row; align-items:center; justify-content:space-between; }
+    .carta-espacial { width:52px; height:72px; }.carta-espacial > strong{font-size:1.55rem}
+    .mano-cartas { min-height:76px; }
+    .escena-comunicacion { grid-template-columns:auto 1fr; }.escena-comunicacion b { grid-column:1 / -1; }
+    .resultado-prueba { grid-template-columns:1fr; }.resultado-simbolo { width:42px; }
+}
